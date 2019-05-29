@@ -1,0 +1,11 @@
+Common:
+- Duration: 12 sec 561 ms
+- Channel: mono
+- Sample rate: 16.0 kHz
+- Bits/sample: 16 bits
+- Compression rate: 1.0x
+- Compression: Microsoft Pulse Code Modulation (PCM)
+- Bit rate: 256.0 Kbit/sec
+- Producer: Lavf58.27.103
+- MIME type: audio/x-wav
+- Endianness: Little endian
