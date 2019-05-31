@@ -23,12 +23,14 @@ def apply_offsets(face_coordinates, offsets):
     x_off, y_off = offsets
     return (x - x_off, x + width + x_off, y - y_off, y + height + y_off)
 
-'''
-This function is for my use and it makes 
-sure that the coorindates of the bounding box are within the frame
-'''
 
 def apply_offset(face_coordinates, offsets, frame_dim):
+    
+    '''
+    This function is for my use and it makes 
+    sure that the coorindates of the bounding box are within the frame
+    '''
+
     x, y, width, height = face_coordinates
     x_off, y_off = offsets
     frame_height = frame_dim[0]
