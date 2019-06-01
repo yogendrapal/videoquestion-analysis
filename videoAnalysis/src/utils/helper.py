@@ -1,5 +1,10 @@
 import json
 
+def get_nonzero_values_key(count):
+
+    sum_of_nonzero_entries = sum(x > 0 for x in count.values())
+    return sum_of_nonzero_entries
+
 
 def get_video_path(video_path_in_json_file):
 
@@ -14,17 +19,23 @@ def get_json_tag_write_file (video_path, json_directory_path):
 
     return json_tag_write_path
 
-def get_predicted_gender (gender_count):
+def get_predictions (count, topn = 1):
 
-    man_count        = gender_count["man"]
-    woman_count      = gender_count["woman"]
-    predicted_gender = max(gender_count, key=gender_count.get)
+    '''
+    Input: A dictionary which contains labels as keys and count of labels as values.
+           Top n predictions returned as a list. 
+
+    Output: N labels with the max count.
     
-    return predicted_gender
+    '''
 
-def store_in_json_file(predicted_gender, json_tag_write_path):
+    topn = min(topn, get_nonzero_values_key(count))
+    predicted_labels_dict = dict(sorted(count.items(), key=lambda x: x[1], reverse = True)[:topn])
+    predicted_labels_list = list(predicted_labels_dict.keys())
+    print(predicted_labels_list)
+    return predicted_labels_list
 
-    tags = {"Gender": predicted_gender}
+def store_in_json_file(tags, json_tag_write_path):
 
     with open(json_tag_write_path, 'w') as outfile:
         json.dump(tags, outfile)
