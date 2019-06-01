@@ -67,7 +67,7 @@ import json
 import configparser
 
 from utils.helper import get_json_tag_write_file
-from utils.helper import get_predicted_gender
+from utils.helper import get_predictions
 from utils.helper import store_in_json_file
 from utils.helper import get_video_path
 
@@ -99,7 +99,9 @@ NO_OF_FACES_TO_DETECT   = parser['NO_OF_FACES_TO_DETECT']
 num_faces               = int(NO_OF_FACES_TO_DETECT['num_faces'])
 
 # Count of the genders predicted for each frame. Final prediction will be max(male_count, female_count)
-gender_count            = {"man": 0, "woman": 0}
+gender_count            = {'man': 0, 'woman': 0}
+emotions_count        = {'angry': 0, 'disgust': 0, 'fear': 0, 'happy': 0, 'sad': 0, 'surprise': 0, 'neutral': 0}
+
 video_path_in_json_file = json_directory_path + json_file_read_path
 video_path              = get_video_path(video_path_in_json_file)
 json_tag_write_path     = get_json_tag_write_file(video_path, json_directory_path)
@@ -120,6 +122,8 @@ gender_target_size      = gender_classifier.input_shape[1:3] #requires input sha
 # starting lists for calculating modes
 gender_window = []
 emotion_window = []
+tags = {}
+
 
 # starting video streaming
 cv2.namedWindow('window_frame')
@@ -221,8 +225,8 @@ for rgb_image in videogen:
         draw_text(face_coordinates, bgr_image, emotion_mode, color, 0, -45, 1, 1)
 
         #increment man or woman count based on the tag
-        gender_count[gender_mode] += 1
-
+        gender_count[gender_mode]           += 1
+        emotions_count[emotion_mode]   += 1
     
     cv2.imshow('window_frame', bgr_image)
 
@@ -230,5 +234,9 @@ for rgb_image in videogen:
         break
 
 
-predicted_gender = get_predicted_gender(gender_count)
-store_in_json_file(predicted_gender, json_tag_write_path)
+predicted_gender = get_predictions(gender_count)
+predicted_emotions = get_predictions(emotions_count, 3)
+tags['Gender'] = predicted_gender
+tags['Emotions'] = predicted_emotions
+print(tags)
+store_in_json_file(tags, json_tag_write_path)
