@@ -2,7 +2,9 @@
 
 Github link of original code: https://github.com/oarriaga/face_classification
 
-Author: Neel Dani
+Author: 
+
+ Dani
 Date: 22nd May, 2019
 
 Incroporated few changes according to needs mentioned below.
@@ -49,6 +51,7 @@ from statistics import mode
 import cv2
 from keras.models import load_model
 import numpy as np
+import os
 
 from utils.datasets import get_labels
 from utils.inference import detect_faces
@@ -73,6 +76,7 @@ from utils.helper import get_video_path
 
 
 #All parameters are stored in this file. Tweak parameters in config.ini for changes.
+os.chdir("/home/aishwarya/videoquestion-analysis/videoAnalysis/src");
 PATH_TO_CONFIG_FILE = "config.ini"
 
 parser = configparser.ConfigParser()
