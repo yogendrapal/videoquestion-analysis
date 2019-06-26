@@ -6,8 +6,13 @@ import speech_recognition as sr
 import re
 import operator
 import nltk
-clip = mp.VideoFileClip("Neel.mp4")
-name=str(uuid.uuid4().fields[-1])[:5]
+import sys
+import os
+VideoName=sys.argv[1]
+
+
+clip = mp.VideoFileClip(VideoName)
+name=VideoName[0:len(VideoName)-4]
 name=name+".mp3"
 clip.audio.write_audiofile(name)
 
@@ -196,4 +201,9 @@ if test:
    
     tagged = nltk.pos_tag(l)
     print(tagged)
+    #name=name+".txt"
+    #dir=os.path.normpath(os.getcwd()+os.sep+os.pardir)
+    #name=dir+"json-files"+name
+    #f=open (name,"w+")
+
     	
