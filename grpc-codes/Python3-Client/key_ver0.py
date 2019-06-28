@@ -8,6 +8,7 @@ import operator
 import nltk
 import sys
 import os
+import json
 from sklearn.externals import joblib
 VideoName=sys.argv[1]
 
@@ -237,17 +238,23 @@ if test:
     from sklearn.externals import joblib
     pipe = joblib.load('newSavedModel.pkl')
     predictions=pipe.predict([l[0]])
-
+    r=""
     for i in predictions:
-    	print(lines[i-1])
-    	#print(clf)
-
-   
-    #tagged = nltk.pos_tag(l)
+    	r=lines[i-1]
+    feeds={}
+    
+     
     #print(tagged)
     #name=name+".txt"
     #dir=os.path.normpath(os.getcwd()+os.sep+os.pardir)
     #name=dir+"json-files"+name
     #f=open (name,"w+")
+    with open(name) as f:
+    	data = json.load(f)
+     #print(d)
+    data['Topic']=r
+    print (data)
+    with open('tags.json', 'w') as json_file:
+    	json.dump(data, json_file)
 
     	
