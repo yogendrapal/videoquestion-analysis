@@ -35,7 +35,7 @@ public class Analyser {
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(pythonProcessInstance.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(pythonProcessInstance.getErrorStream()));
 
- 	   // read the output from the command
+            // read the output from the command
             /*System.out.println("Standard output from Python:\n");
             while ((s = stdInput.readLine()) != null) {
                 System.out.println(s);
@@ -47,7 +47,7 @@ public class Analyser {
                    System.out.println(s);
             }*/
 
-	   String command1 = "python3 " + pathManager.getPythonSrc() + "key.py " + downloadPath+" "+video.getVideoName();
+           String command1 = "python3 " + pathManager.getPythonSrc() + "key_ver0.py " + downloadPath +" "+video.getVideoName();
            System.out.println(command1);
            Process p1 = Runtime.getRuntime().exec(command1);
            p1.waitFor();
@@ -55,17 +55,17 @@ public class Analyser {
            BufferedReader StdInput = new BufferedReader(new InputStreamReader(p1.getInputStream()));
            BufferedReader StdError = new BufferedReader(new InputStreamReader(p1.getErrorStream()));
 
- 	   // read the output from the command
-            /*System.out.println("Standard output from Python:\n");
+           // read the output from the command
+            System.out.println("Standard output from Python:\n");
             while ((s = StdInput.readLine()) != null) {
                 System.out.println(s);
-            }*/
+            }
                
             // read any errors from the attempted command
-            /*System.out.println("Standard erro from Python:\n");
+            System.out.println("Standard error from Python:\n");
             while ((s = StdError.readLine()) != null) {
                    System.out.println(s);
-            }*/
+            }
 
             //read the JSON file which contains tags created by python3 process. 
             tags += new String(Files.readAllBytes(Paths.get(jsonFilePath)));

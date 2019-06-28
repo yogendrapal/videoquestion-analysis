@@ -9,6 +9,7 @@ public class PathManager {
 	private String jsonFiles 		= "";
 	private String pythonSrc 		= "";
 	private String downloadedVideos = "";
+	private String keyword 			= "";
 	
 	PathManager(){
 		root 				+= System.getProperty("user.dir") + "/";

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.test-video-analysis</groupId>
-	<artifactId>Test-Video-Analysis-API</artifactId>
+	<artifactId>video-analysis-API</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Test-Video-Analysis-API</name>
-	<description>Test Question Video Analysis API</description>
+	<name>video-analysis-API</name>
+	<description>Question Video Analysis API</description>
 
 	<properties>
 		<java.version>1.8</java.version>

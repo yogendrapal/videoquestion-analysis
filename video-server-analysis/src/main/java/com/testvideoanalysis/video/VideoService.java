@@ -51,8 +51,8 @@ public class VideoService {
 		      Files.deleteIfExists(Paths.get(pathManager.getJsonFiles() + video.getVideoName() + ".json"));
 
 		      // delete .mp3 and .wav files 
-		      Files.deleteIfExists(Paths.get(pathManager.getDownloadedVideos() + video.getVideoName + ".mp3" ) ); 
-		      Files.deleteIfExists(Paths.get(pathManager.getJsonFiles() + video.getVideoName() + ".wav"));
+		      Files.deleteIfExists(Paths.get(pathManager.getDownloadedVideos() + video.getVideoName() + ".mp3" ) ); 
+		      Files.deleteIfExists(Paths.get(pathManager.getDownloadedVideos() + video.getVideoName()));
 
 		      return tags;
 		}
