@@ -22,16 +22,22 @@ public class VideoController {
 	public String uploadVideo(@RequestParam(value="video") MultipartFile file, @RequestParam(value="id") String videoId) {
 		
 		Optional<Video> checkVideo = videoService.getVideo(videoId);
+		
+		// If video details already exist in MongoDb, return video tags w/o processing.
 		if (checkVideo.isPresent())
 			return checkVideo.get().getTags();
 		
 		return videoService.uploadVideo(new Video(file.getOriginalFilename(), videoId), file);
 	}
 	
+	
+	
 	@RequestMapping (value="/drupal/videos/status/{id}", method = RequestMethod.GET)
 	public String getVideoStatus(@PathVariable String id) {
 		return videoService.getVideoStatus(id);
 	}
+	
+	
 	
 	@RequestMapping(value="/drupal/videos/{id}", method = RequestMethod.GET)
 	public Optional<Video> getVideo(@PathVariable String id) {
