@@ -4,7 +4,7 @@ pandas==0.19.1
 numpy==1.12.1
 h5py==2.7.0
 statistics
-opencv-python==3.2.0
+opencv-python==4.2.0.32
 configparser==3.7.4
 cvlib==0.2.1
 scikit-video==1.1.11
